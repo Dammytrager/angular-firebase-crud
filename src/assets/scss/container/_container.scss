@@ -1,0 +1,9 @@
+.caf-container {
+  &__sidebar {
+    width: 10%;
+  }
+  &__main-page {
+    width: 90%;
+    padding: 40px;
+  }
+}
