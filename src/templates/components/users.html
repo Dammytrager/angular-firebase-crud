@@ -1,0 +1,29 @@
+<div class="caf-users">
+    <div class="users-container">
+        <div *ngFor="let user of users">
+            <div class="d-flex justify-content-between align-items-center user">
+                <div class="image">
+                    <img src="{{user.avatar}}">
+                </div>
+                <div class="contents d-flex justify-content-between">
+                    <div>
+                        <div class="name">
+                            {{user?.surname}} {{user?.firstname}}
+                        </div>
+                        <div class="age">
+                            Age: {{user.age}}
+                        </div>
+                    </div>
+                    <div class="icons d-flex">
+                        <div class="edit icon text-primary" title="Edit User">
+                            <fa-icon [icon]="faPencilAlt"></fa-icon>
+                        </div>
+                        <div class="delete icon text-danger" title="Delete User">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

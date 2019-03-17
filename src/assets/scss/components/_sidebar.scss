@@ -1,0 +1,30 @@
+.caf-sidebar {
+  background-color: $primary;
+  height: 100vh;
+  padding: 30px 0;
+  @media (max-width: 400px) {
+    padding: 30px 10px;
+  }
+  &__icon {
+    width: 35px;
+    height: 35px;
+    margin: 20px auto;
+    &:hover {
+      cursor: pointer;
+    }
+    .icon {
+      color: $white;
+      font-size: 26px;
+      @media (max-width: 400px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .add {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    .icon {
+      font-size: 18px;
+    }
+  }
+}

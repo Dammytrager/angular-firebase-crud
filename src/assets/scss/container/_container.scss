@@ -1,9 +1,22 @@
 .caf-container {
   &__sidebar {
-    width: 10%;
+    width: 15%;
+    @media (min-width: 576px) {
+      width: 10%;
+    }
+    @media (min-width: 992px) {
+      width: 4% !important;
+    }
   }
   &__main-page {
-    width: 90%;
+    width: 95%;
+    height: 100vh;
+    overflow-y: auto;
     padding: 40px;
+    background-color: $bg-primary;
+    @media (max-width: 575px) {
+      width: 100%;
+      padding: 20px;
+    }
   }
 }

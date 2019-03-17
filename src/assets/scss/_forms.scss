@@ -1,0 +1,65 @@
+::placeholder {
+  color: $grey1;
+  font-size: 90%;
+}
+:-ms-input-placeholder{
+  color: $grey1;
+  font-size: 90%;
+}
+::-ms-input-placeholder{
+  color: $grey1;
+  font-size: 90%;
+}
+
+//label {
+//  font-weight: 500;
+//  font-size: 12px;
+//  color: $primary;
+//}
+
+.input-group {
+  .input-group-text {
+    background-color: $white !important;
+    border-radius: 0 7px 7px 0 !important;
+    border-left: none !important;
+    height: calc(1.5em + .75rem + 2px);
+  }
+  input.form-control {
+    border-right: none !important;
+    border-radius: 7px 0 0 7px !important;
+    &:focus {
+      box-shadow: none !important;
+      border-color: #ced4da !important;
+    }
+  }
+}
+
+input,textarea, select {
+  border-radius: 7px !important;
+  box-shadow: rgba(46, 60, 73, 0.05) 0px 2px 2px 0px;
+  &:focus {
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+  }
+}
+
+
+//button  {
+//  background-color: $primary;
+//  margin-top:20px;
+//  color:$white;
+//  border-radius: 0px !important;
+//  &:hover {
+//    background-color: $blue1;
+//  }
+//  &:focus {
+//    box-shadow: none !important;
+//  }
+//}
+
+//.form {
+//  button  {
+//    box-shadow: rgba(0, 0, 0, 0.1) 12px 15px 20px;
+//  }
+//}
+
