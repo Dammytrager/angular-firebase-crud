@@ -10,6 +10,7 @@ export class UserFormComponent implements OnInit{
     @Input('data') data;
     _dataDefaults = {
         button: '',
+        delete: false
     };
     faCamera = faCamera;
 
@@ -18,6 +19,8 @@ export class UserFormComponent implements OnInit{
     }
 
     changePicture (file) {
-        file.click()
+        if (!this.data.delete) {
+            file.click()
+        }
     }
 }

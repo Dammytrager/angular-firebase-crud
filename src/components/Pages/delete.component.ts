@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
     templateUrl: '../../templates/pages/delete.html'
 })
 export class DeletePage {
-
+    titleData = {
+        title: "Delete User",
+        type: 'delete'
+    }
 }

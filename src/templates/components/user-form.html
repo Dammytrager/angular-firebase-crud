@@ -4,7 +4,7 @@
             <div class="image d-flex justify-content-center">
                 <div class="image-cont" (click)="changePicture(file)">
                     <img src="../../assets/images/avatar.svg" class="d-block" alt="Image">
-                    <div class="image-overlay d-flex justify-content-center align-items-center">
+                    <div *ngIf="!data.delete" class="image-overlay d-flex justify-content-center align-items-center">
                         <div style="width: 90%">
                             <div class="icon">
                                 <fa-icon [icon]="faCamera"></fa-icon>
@@ -17,7 +17,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <!--Editing or Creating-->
+        <div *ngIf="!data.delete" class="col-md-8">
             <div class="user-form d-flex justify-content-center">
                 <form>
                     <div class="form-group">
@@ -43,6 +44,28 @@
                 </form>
             </div>
         </div>
+
+        <!--Deleting-->
+        <div *ngIf="data.delete" class="col-md-8">
+            <div class="user-info d-flex justify-content-center">
+                <div class="content">
+                    <div class="item">
+                        <b>Surname:</b> Surname
+                    </div>
+                    <div class="item">
+                        <b>Firstname:</b> Firstname
+                    </div>
+                    <div class="item">
+                        <b>Age:</b> Age
+                    </div>
+                    <div class="button">
+                        <button type="button" class="btn btn-secondary">
+                            {{data.button}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<input type="file" class="" style="opacity: 0" #file>
+<input *ngIf="!data.delete" type="file" class="" style="opacity: 0" #file>
