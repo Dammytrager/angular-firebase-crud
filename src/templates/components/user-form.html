@@ -1,0 +1,48 @@
+<div class="caf-user-form">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="image d-flex justify-content-center">
+                <div class="image-cont" (click)="changePicture(file)">
+                    <img src="../../assets/images/avatar.svg" class="d-block" alt="Image">
+                    <div class="image-overlay d-flex justify-content-center align-items-center">
+                        <div style="width: 90%">
+                            <div class="icon">
+                                <fa-icon [icon]="faCamera"></fa-icon>
+                            </div>
+                            <div class="text">
+                                Change Picture
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="user-form d-flex justify-content-center">
+                <form>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder=" ">
+                        <span>Surname</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder=" ">
+                        <span>Firstname</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder=" ">
+                        <span>Age</span>
+                    </div>
+
+                    <div class="button">
+                        <button type="button" class="btn btn-secondary">
+                            {{data.button}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="file" class="" style="opacity: 0" #file>

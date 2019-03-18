@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {faPencilAlt, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class UsersComponent implements OnInit {
     users;
     faPencilAlt = faPencilAlt;
     faTrash = faTrash;
-    constructor (private _http: HttpClient) {
+    constructor (private _http: HttpClient, private _router: Router) {
     }
 
     ngOnInit(): void {
@@ -26,5 +27,9 @@ export class UsersComponent implements OnInit {
                 (error) => {
                     console.log(error);
                 });
+    }
+
+    navigate(destination) {
+        this._router.navigate([destination]);
     }
 }

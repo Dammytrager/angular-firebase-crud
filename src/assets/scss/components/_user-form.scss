@@ -1,0 +1,100 @@
+.caf-user-form {
+  padding: 70px 30px;
+  background-color: $white;
+  border: solid 1px $border;
+  border-radius: 10px;
+  .image {
+    max-height: 250px;
+    margin-bottom: 40px;
+    .image-cont {
+      transition: all 1s;
+      &:hover {
+        cursor: pointer;
+        .image-overlay {
+          opacity: 1;
+        }
+      }
+      img {
+        width: 150px;
+        height: 150px;
+        @media (max-width: 575px) {
+          width: 120px;
+          height: 120px;
+        }
+      }
+      .image-overlay {
+        transition: all 1s;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        @media (max-width: 575px) {
+          width: 120px;
+          height: 120px;
+        }
+        .icon {
+          width: 30px;
+          font-size: 20px;
+          margin: 5px auto;
+          color: $white;
+        }
+        .text {
+          font-size: 92.5%;
+          text-align: center;
+          color: $white;
+        }
+      }
+    }
+  }
+  .user-form {
+    form {
+      width: 70%;
+      @media (max-width: 575px) {
+        width: 95%;
+      }
+      .form-group {
+        margin-bottom: 45px !important;
+        position: relative;
+        input.form-control {
+          padding: 10px !important;
+          border-radius: 0 !important;
+          border: none !important;
+          border-bottom: solid 2px $border !important;
+          box-shadow: none;
+        }
+        span {
+          padding: 10px;
+          pointer-events: none;
+          position: absolute;
+          left: 10px;
+          top: 0;
+          transition: 0.2s;
+          transition-timing-function: ease;
+          transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+          opacity: 0.5;
+        }
+        input:focus + span, input:not(:placeholder-shown) + span {
+          opacity: 0.5;
+          transform: scale(0.75) translateY(-100%) translateX(-30px);
+        }
+      }
+      .button {
+        button {
+          background-color: $primary !important;
+          border: none;
+          box-shadow: 4px 4px 20px rgba(242, 13, 196, 0.4);
+          transition: all 0.2s;
+          &:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 5px 5px 20px rgba(242, 13, 196, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+
+

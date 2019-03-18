@@ -1,12 +1,14 @@
 <div class="caf-sidebar">
     <div
             class="caf-sidebar__icon d-flex justify-content-center"
-            title="Main Page">
+            title="Main Page"
+            (click)="navigate('/')">
         <fa-icon class="icon home" [icon]="faHome"></fa-icon>
     </div>
     <div
             class="caf-sidebar__icon add d-flex justify-content-center align-items-center"
-            title="Create User">
+            title="Create User"
+            (click)="navigate('/user/create')">
         <fa-icon class="icon" [icon]="faPlus"></fa-icon>
     </div>
 </div>

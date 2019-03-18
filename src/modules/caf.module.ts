@@ -14,6 +14,10 @@ import {HomePage} from '../components/Pages/home.component';
 import {FilterComponent} from '../components/components/filter.component';
 import {UsersComponent} from '../components/components/users.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {CreatePage} from '../components/Pages/create.component';
+import {EditPage} from '../components/Pages/edit.component';
+import {DeletePage} from '../components/Pages/delete.component';
+import {UserFormComponent} from '../components/components/user-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
       TitleComponent,
       HomePage,
       FilterComponent,
-      UsersComponent
+      UsersComponent,
+      CreatePage,
+      EditPage,
+      DeletePage,
+      UserFormComponent
   ],
   imports: [
       BrowserModule,

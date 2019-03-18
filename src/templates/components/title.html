@@ -1,0 +1,11 @@
+<div class="caf-title">
+    <div class="contents d-flex">
+        <div class="title mr-3">{{data.title}}</div>
+        <div class="icon">
+            <fa-icon *ngIf="data.type === 'create'" [icon]="faPlus"></fa-icon>
+            <fa-icon *ngIf="data.type === 'edit'" [icon]="faPencilAlt"></fa-icon>
+            <fa-icon *ngIf="data.type === 'delete'" [icon]="faTrash"></fa-icon>
+        </div>
+    </div>
+</div>
+
