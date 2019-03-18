@@ -1,0 +1,22 @@
+<div class="caf-loader">
+    <div class="spinner spinner-1" *ngIf="data.type == 1"
+         [class.p-pink]="data.color == 'primary-pink'"
+         [class.s-pink]="data.color == 'secondary-pink'"
+         [class.white]="data.color == 'white'">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div *ngIf="data.type == 2" class="spinner spinner-2"
+         [class.p-pink]="data.color == 'primary-pink'"
+         [class.s-pink]="data.color == 'secondary-pink'"
+         [class.white]="data.color == 'white'">
+    </div>
+
+    <div *ngIf="data.type == 3" class="spinner spinner-3"
+         [class.p-pink]="data.color == 'primary-pink'"
+         [class.s-pink]="data.color == 'secondary-pink'"
+         [class.white]="data.color == 'white'">
+    </div>
+</div>

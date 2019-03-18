@@ -13,7 +13,7 @@ import {TitleComponent} from '../components/components/title.component';
 import {HomePage} from '../components/Pages/home.component';
 import {FilterComponent} from '../components/components/filter.component';
 import {UsersComponent} from '../components/components/users.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {CreatePage} from '../components/Pages/create.component';
 import {EditPage} from '../components/Pages/edit.component';
 import {DeletePage} from '../components/Pages/delete.component';
@@ -22,6 +22,7 @@ import {NgReduxModule, NgRedux, DevToolsExtension} from '@angular-redux/store';
 import {AppState} from '../state/interface';
 import {StoreEnhancer} from 'redux';
 import {INITIAL_STATE, rootReducer} from '../state/store';
+import {LoaderComponent} from '../components/components/loader.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {INITIAL_STATE, rootReducer} from '../state/store';
       CreatePage,
       EditPage,
       DeletePage,
-      UserFormComponent
+      UserFormComponent,
+      LoaderComponent
   ],
   imports: [
       BrowserModule,
