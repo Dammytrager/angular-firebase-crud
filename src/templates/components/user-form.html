@@ -68,4 +68,8 @@
         </div>
     </div>
 </div>
-<input *ngIf="!data.delete" type="file" class="" style="opacity: 0" #file>
+<input
+       type="file"
+       class=""
+       style="opacity: 0"
+       #file (change)="upLoadPicture($event, file)">

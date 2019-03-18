@@ -7,6 +7,7 @@ import {CAFComponent} from '../components/container/caf.container';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 import {SideBarComponent} from '../components/components/side-bar.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {TitleComponent} from '../components/components/title.component';
@@ -23,6 +24,7 @@ import {AppState} from '../state/interface';
 import {StoreEnhancer} from 'redux';
 import {INITIAL_STATE, rootReducer} from '../state/store';
 import {LoaderComponent} from '../components/components/loader.component';
+import {FirebaseService} from '../services/firebase.service';
 
 @NgModule({
   declarations: [
@@ -43,11 +45,12 @@ import {LoaderComponent} from '../components/components/loader.component';
       CafRoutingModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFirestoreModule,
+      AngularFireStorageModule,
       FontAwesomeModule,
       HttpClientModule,
       NgReduxModule
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [CAFComponent]
 })
 export class CafModule {
