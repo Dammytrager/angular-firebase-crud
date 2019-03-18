@@ -18,6 +18,10 @@ import {CreatePage} from '../components/Pages/create.component';
 import {EditPage} from '../components/Pages/edit.component';
 import {DeletePage} from '../components/Pages/delete.component';
 import {UserFormComponent} from '../components/components/user-form.component';
+import {NgReduxModule, NgRedux, DevToolsExtension} from '@angular-redux/store';
+import {AppState} from '../state/interface';
+import {StoreEnhancer} from 'redux';
+import {INITIAL_STATE, rootReducer} from '../state/store';
 
 @NgModule({
   declarations: [
@@ -38,9 +42,17 @@ import {UserFormComponent} from '../components/components/user-form.component';
       AngularFireModule.initializeApp(environment.firebase),
       AngularFirestoreModule,
       FontAwesomeModule,
-      HttpClientModule
+      HttpClientModule,
+      NgReduxModule
   ],
   providers: [],
   bootstrap: [CAFComponent]
 })
-export class CafModule { }
+export class CafModule {
+    constructor (private ngRedux: NgRedux<AppState>,
+                 private reduxDevTools: DevToolsExtension) {
+        const enhancers: StoreEnhancer<AppState>[] = (this.reduxDevTools.isEnabled && !environment.production)
+            ? [this.reduxDevTools.enhancer()] : [];
+        ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);
+    }
+}

@@ -1,12 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {faHome, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
+import {select} from '@angular-redux/store';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'caf-side-bar',
     templateUrl: '../../templates/components/side-bar.html'
 })
-export class SideBarComponent implements OnInit{
+export class SideBarComponent implements OnInit {
+    @select('route') $route: Observable<string>;
+    private _route = '/users';
+
     faHome = faHome;
     faPlus = faPlus;
     disable;
@@ -14,16 +19,13 @@ export class SideBarComponent implements OnInit{
     constructor (private _router: Router) {}
 
     ngOnInit(): void {
-        this.checkRoute()
+        this.$route.subscribe((data) => {
+           this.disable = this._route !== data;
+        });
     }
 
     navigate(destination) {
         this._router.navigate([destination]);
     }
 
-    checkRoute () {
-        let page: any = location.href;
-        page = page.substr(page.lastIndexOf('/') + 1);
-        this.disable = page !== 'users'
-    }
 }
