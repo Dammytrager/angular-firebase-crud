@@ -1,31 +1,37 @@
 <div class="caf-users">
-    <div class="users-container">
+    <div class="d-flex justify-content-center">
+        <caf-loader *ngIf="loading" [data]="{type: 1, color: 'primary-pink'}"></caf-loader>
+    </div>
+    <div class="users-container" *ngIf="users.length">
         <div *ngFor="let user of users">
-            <div class="d-flex justify-content-between align-items-center user">
-                <div class="image">
-                    <img src="{{user.avatar}}">
-                </div>
-                <div class="contents d-flex justify-content-between">
-                    <div>
-                        <div class="name">
-                            {{user?.surname}} {{user?.firstname}}
-                        </div>
-                        <div class="age">
-                            Age: {{user.age}}
-                        </div>
+                <div class="d-flex justify-content-between align-items-center user">
+                    <div class="image">
+                        <img [src]="user?.avatar ? user.avatar : imageUrl">
                     </div>
-                    <div class="icons d-flex">
-                        <div class="edit icon text-primary" title="Edit User"
-                             (click)="navigate('/user/edit/1')">
-                            <fa-icon [icon]="faPencilAlt"></fa-icon>
+                    <div class="contents d-flex justify-content-between">
+                        <div>
+                            <div class="name">
+                                {{user?.surname}} {{user?.firstname}}
+                            </div>
+                            <div class="age">
+                                Age: {{user.age}}
+                            </div>
                         </div>
-                        <div class="delete icon text-danger" title="Delete User"
-                             (click)="navigate('/user/delete/1')">
-                            <fa-icon [icon]="faTrash"></fa-icon>
+                        <div class="icons d-flex">
+                            <div class="edit icon text-primary" title="Edit User"
+                                 (click)="navigate('/user/edit', user, user.id)">
+                                <fa-icon [icon]="faPencilAlt"></fa-icon>
+                            </div>
+                            <div class="delete icon text-danger" title="Delete User"
+                                 (click)="navigate('/user/delete', user, user.id)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
+    <div *ngIf="!users.length && !loading">
+        No User found
     </div>
 </div>

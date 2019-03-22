@@ -17,6 +17,7 @@
       img {
         width: 150px;
         height: 150px;
+        border-radius: 50%;
         @media (max-width: 575px) {
           width: 120px;
           height: 120px;
@@ -49,6 +50,12 @@
       }
     }
   }
+  .alter {
+    max-height: 250px;
+    img {
+      width: 90%;
+    }
+  }
   .user-form {
     form {
       width: 70%;
@@ -58,11 +65,16 @@
       .form-group {
         margin-bottom: 45px !important;
         position: relative;
+        input.is-invalid {
+          border-bottom: solid 2px #dc3545 !important;
+        }
         input.form-control {
           padding: 10px !important;
           border-radius: 0 !important;
-          border: none !important;
-          border-bottom: solid 2px $border !important;
+          border-top: none !important;
+          border-right: none !important;
+          border-left: none !important;
+          border-bottom: solid 2px $border;
           box-shadow: none;
         }
         span {

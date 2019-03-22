@@ -13,6 +13,8 @@
         margin-right: 25px;
         img {
           width: 90px;
+          height: 90px;
+          border-radius: 50%;
           @media (max-width: 767px) {
             width: 70px;
           }

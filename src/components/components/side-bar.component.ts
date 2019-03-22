@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {faHome, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
-import {select} from '@angular-redux/store';
+import {NgRedux, select} from '@angular-redux/store';
 import {Observable} from 'rxjs';
+import {AppState} from '../../state/interface';
+import {CHANGE_ACTIVE_USER} from '../../state/actions';
 
 @Component({
     selector: 'caf-side-bar',
@@ -16,7 +18,9 @@ export class SideBarComponent implements OnInit {
     faPlus = faPlus;
     disable;
 
-    constructor (private _router: Router) {}
+    constructor(
+        private _router: Router,
+        private _ngRedux: NgRedux<AppState>) {}
 
     ngOnInit(): void {
         this.$route.subscribe((data) => {
@@ -25,6 +29,7 @@ export class SideBarComponent implements OnInit {
     }
 
     navigate(destination) {
+        this._ngRedux.dispatch({type: CHANGE_ACTIVE_USER, activeUser: {}});
         this._router.navigate([destination]);
     }
 

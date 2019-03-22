@@ -1,5 +1,6 @@
 export interface AppState {
     route: string;
     users: any[];
-    activeUser: any
+    activeUser: any;
+    loading: boolean;
 }

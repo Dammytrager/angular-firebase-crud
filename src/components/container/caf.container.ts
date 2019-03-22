@@ -1,26 +1,30 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {CHANGE_ROUTE} from '../../state/actions';
+import {CHANGE_LOADING, CHANGE_ROUTE, CHANGE_USERS} from '../../state/actions';
 import {AppState} from '../../state/interface';
-import {NgRedux} from '@angular-redux/store';
+import {NgRedux, select} from '@angular-redux/store';
+import {FirebaseService} from '../../services/firebase.service';
+import {Observable} from 'rxjs';
 
 
 @Component({
   selector: 'caf-root',
   templateUrl: '../../templates/container/caf.html'
 })
-export class CAFComponent implements OnInit{
 
-  constructor (
+export class CAFComponent implements OnInit {
+  constructor(
       private _router: Router,
-      private _ngRedux: NgRedux<AppState>
+      private _ngRedux: NgRedux<AppState>,
+      private _api: FirebaseService
   ) {}
 
   ngOnInit(): void {
     this.setRoute();
+    this.getUsers();
   }
 
-  setRoute () {
+  setRoute() {
     this._router.events.subscribe((data) => {
       if (data instanceof NavigationEnd) {
         this._ngRedux.dispatch({
@@ -31,5 +35,7 @@ export class CAFComponent implements OnInit{
     });
   }
 
-
+  getUsers() {
+    this._api.getUsers();
+  }
 }

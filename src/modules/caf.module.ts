@@ -25,6 +25,7 @@ import {StoreEnhancer} from 'redux';
 import {INITIAL_STATE, rootReducer} from '../state/store';
 import {LoaderComponent} from '../components/components/loader.component';
 import {FirebaseService} from '../services/firebase.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,9 @@ import {FirebaseService} from '../services/firebase.service';
       AngularFireStorageModule,
       FontAwesomeModule,
       HttpClientModule,
-      NgReduxModule
+      NgReduxModule,
+      ReactiveFormsModule,
+      FormsModule
   ],
   providers: [FirebaseService],
   bootstrap: [CAFComponent]

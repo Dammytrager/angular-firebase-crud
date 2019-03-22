@@ -1,9 +1,10 @@
 <div class="caf-user-form">
     <div class="row">
         <div class="col-md-4">
-            <div class="image d-flex justify-content-center">
+            <div class="image d-flex justify-content-center" *ngIf="route !== '/user/create'">
                 <div class="image-cont" (click)="changePicture(file)">
-                    <img src="../../assets/images/avatar.svg" class="d-block" alt="Image">
+                    <img [src]="activeUser.avatar ? activeUser.avatar : imageUrl"
+                         class="d-block" alt="Image">
                     <div *ngIf="!data.delete" class="image-overlay d-flex justify-content-center align-items-center">
                         <div style="width: 90%">
                             <div class="icon">
@@ -16,29 +17,62 @@
                     </div>
                 </div>
             </div>
+            <div class="alter d-flex justify-content-center" *ngIf="route === '/user/create'">
+                <img src="../../assets/images/alter.svg">
+            </div>
         </div>
         <!--Editing or Creating-->
         <div *ngIf="!data.delete" class="col-md-8">
             <div class="user-form d-flex justify-content-center">
-                <form>
+                <form [formGroup]="userForm">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder=" ">
+                        <input class="form-control"
+                               formControlName="surname"
+                               [class.is-invalid]="surname.invalid && (surname.touched || isSubmit)"
+                               type="text" placeholder=" ">
                         <span>Surname</span>
+                        <div *ngIf="surname.errors">
+                            <small *ngIf="surname.invalid && (surname.touched|| isSubmit)" class="text-danger">
+                                required field
+                            </small>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder=" ">
+                        <input class="form-control"
+                               formControlName="firstname"
+                               [class.is-invalid]="firstname.invalid && (firstname.touched || isSubmit)"
+                               type="text" placeholder=" ">
                         <span>Firstname</span>
+                        <div *ngIf="firstname.errors">
+                            <small *ngIf="firstname.invalid && (firstname.touched || isSubmit)" class="text-danger">
+                                required field
+                            </small>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder=" ">
+                        <input class="form-control"
+                               formControlName="age"
+                               [class.is-invalid]="age.invalid && (age.touched || isSubmit)"
+                               type="text" placeholder=" ">
                         <span>Age</span>
+                        <div *ngIf="age.errors">
+                            <small *ngIf="age.invalid && (age.touched || isSubmit)" class="text-danger">
+                                required field
+                            </small>
+                        </div>
                     </div>
 
                     <div class="button">
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button"
+                                [disabled]="showLoader"
+                                class="btn btn-secondary"
+                                (click)="data.type === 'create' ? createUser() : updateUser()">
                             {{data.button}}
+                            <span style="float: right"class="ml-3">
+                                <caf-loader *ngIf="showLoader" [data]="{type: 3, color: 'white'}"></caf-loader>
+                            </span>
                         </button>
                     </div>
                 </form>
@@ -46,21 +80,27 @@
         </div>
 
         <!--Deleting-->
-        <div *ngIf="data.delete" class="col-md-8">
+        <div *ngIf="data.delete && activeUser" class="col-md-8">
             <div class="user-info d-flex justify-content-center">
                 <div class="content">
                     <div class="item">
-                        <b>Surname:</b> Surname
+                        <b>Surname:</b> {{activeUser.surname}}
                     </div>
                     <div class="item">
-                        <b>Firstname:</b> Firstname
+                        <b>Firstname:</b> {{activeUser.firstname}}
                     </div>
                     <div class="item">
-                        <b>Age:</b> Age
+                        <b>Age:</b> {{activeUser.age}}
                     </div>
                     <div class="button">
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button"
+                                [disabled]="showLoader"
+                                class="btn btn-secondary"
+                                (click)="deleteUser(activeUser.id)">
                             {{data.button}}
+                            <span style="float: right"class="ml-3">
+                                <caf-loader *ngIf="showLoader" [data]="{type: 3, color: 'white'}"></caf-loader>
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -72,4 +112,4 @@
        type="file"
        class=""
        style="opacity: 0"
-       #file (change)="upLoadPicture($event, file)">
+       #file (change)="upLoadPicture($event, file, activeUser.id)">
