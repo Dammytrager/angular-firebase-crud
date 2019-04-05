@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     users = [];
     faPencilAlt = faPencilAlt;
     faTrash = faTrash;
-    imageUrl = '../../assets/images/avatar.svg';
+    imageUrl = './assets/images/avatar.svg';
 
     constructor(private _router: Router, private _ngRedux: NgRedux<AppState>) {
     }
