@@ -21,7 +21,7 @@ export class UserFormComponent implements OnInit {
    $activeUser$: Subscription;
    activeUser;
    route;
-   imageUrl = './assets/images/avatar.svg';
+   imageUrl = 'assets/images/avatar.svg';
 
     @Input('data') data;
     _dataDefaults = {
