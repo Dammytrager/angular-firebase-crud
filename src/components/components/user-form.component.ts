@@ -2,9 +2,12 @@ import {Component, Input, OnInit} from '@angular/core';
 import {faCamera} from '@fortawesome/free-solid-svg-icons';
 import {FirebaseService} from '../../services/firebase.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {select} from '@angular-redux/store';
+import {NgRedux, select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {AppState} from '../../state/interface';
+import {CHANGE_ACTIVE_USER} from '../../state/actions';
 
 
 @Component({
@@ -30,11 +33,14 @@ export class UserFormComponent implements OnInit {
     userForm: FormGroup;
     isSubmit = false;
     showLoader = false;
+    showImageLoader = false;
 
     constructor(
         private _api: FirebaseService,
         private _fb: FormBuilder,
-        private _router: Router
+        private _router: Router,
+        private toastr: ToastrService,
+        private ngRedux: NgRedux<AppState>
     ) {}
 
     get surname() {
@@ -69,9 +75,15 @@ export class UserFormComponent implements OnInit {
     }
 
     upLoadPicture($event, file, id) {
+        this.showImageLoader = true;
         this._api.uploadFile($event.target.files[0], this.activeUser.id)
-            .then((snapshot) => {
-                this.getImageUrl(id);
+            .then(async (snapshot) => {
+                await this.getImageUrl(id);
+                this.showImageLoader = false;
+                this.toastr.success('image uploaded successfully');
+        }).catch((error) => {
+            this.toastr.error('image not uploaded');
+            this.showImageLoader = false;
         });
         file.value = '';
     }
@@ -84,7 +96,9 @@ export class UserFormComponent implements OnInit {
         this._api.getFileUrl(id).then((url) => {
            this.updateAvatar(url).then((data) => {
                this.imageUrl = url;
-               this._api.getUsers();
+               const activeUser = {...this.activeUser, ...{avatar: url}};
+               this.ngRedux.dispatch({type: CHANGE_ACTIVE_USER, activeUser: activeUser});
+               // this._api.getUsers();
            });
         });
     }
@@ -97,9 +111,14 @@ export class UserFormComponent implements OnInit {
         this.isSubmit = true;
         this.showLoader = true;
         if (this.userForm.valid) {
-           await this._api.updateUser(this.userForm.value, this.activeUser.id);
-           this._api.getUsers();
-           this._router.navigate(['/users']);
+           await this._api.updateUser(this.userForm.value, this.activeUser.id).then((data) => {
+               this.toastr.success('user updated successfully');
+           }).catch((error) => {
+               this.toastr.error('operation not successful');
+           }).finally(() => {
+               this._router.navigate(['/users']);
+           });
+           // this._api.getUsers();
         }
     }
 
@@ -108,9 +127,14 @@ export class UserFormComponent implements OnInit {
         if (this.userForm.valid) {
             this.showLoader = true;
             const data = Object.assign({avatar: ''}, this.userForm.value);
-            await this._api.CreateUser(data);
-            this._api.getUsers();
-            this._router.navigate(['/users']);
+            await this._api.CreateUser(data).then((data) => {
+                this.toastr.success('user created successfully');
+            }).catch((error) => {
+                this.toastr.error('user not created');
+            }).finally(() => {
+                this._router.navigate(['/users']);
+            });
+            // this._api.getUsers();
         }
     }
 
@@ -118,7 +142,12 @@ export class UserFormComponent implements OnInit {
         this.showLoader = true;
         this._api.deleteUser(id).then(() => {
             this.deleteImage(id).then(() => {
-                this._api.getUsers();
+                // this._api.getUsers();
+                this.toastr.success('user deleted successfully');
+                this._router.navigate(['/users']);
+            }).catch((error) => {
+                this.toastr.error('operation not successful');
+            }).finally(() => {
                 this._router.navigate(['/users']);
             });
         });

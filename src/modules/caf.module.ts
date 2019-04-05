@@ -26,6 +26,9 @@ import {INITIAL_STATE, rootReducer} from '../state/store';
 import {LoaderComponent} from '../components/components/loader.component';
 import {FirebaseService} from '../services/firebase.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+import {ToastService} from '../services/toast.service';
 
 @NgModule({
   declarations: [
@@ -51,14 +54,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
       HttpClientModule,
       NgReduxModule,
       ReactiveFormsModule,
-      FormsModule
+      FormsModule,
+      BrowserAnimationsModule,
+      ToastrModule.forRoot()
   ],
-  providers: [FirebaseService],
+  providers: [
+      FirebaseService,
+      ToastService
+  ],
   bootstrap: [CAFComponent]
 })
 export class CafModule {
-    constructor (private ngRedux: NgRedux<AppState>,
-                 private reduxDevTools: DevToolsExtension) {
+    constructor(private ngRedux: NgRedux<AppState>,
+                private reduxDevTools: DevToolsExtension) {
         const enhancers: StoreEnhancer<AppState>[] = (this.reduxDevTools.isEnabled && !environment.production)
             ? [this.reduxDevTools.enhancer()] : [];
         ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);

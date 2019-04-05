@@ -5,6 +5,7 @@ import {AppState} from '../../state/interface';
 import {NgRedux, select} from '@angular-redux/store';
 import {FirebaseService} from '../../services/firebase.service';
 import {Observable} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class CAFComponent implements OnInit {
   constructor(
       private _router: Router,
       private _ngRedux: NgRedux<AppState>,
-      private _api: FirebaseService
+      private _api: FirebaseService,
+      private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {

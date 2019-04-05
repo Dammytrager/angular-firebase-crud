@@ -15,10 +15,20 @@ export class FirebaseService {
     }
 
     getUsers() {
-        return this._db.collection('users').get().toPromise().then((snapshot) => {
+        // return this._db.collection('users').get().toPromise().then((snapshot) => {
+        //     const users = [];
+        //     snapshot.docs.forEach((doc) => {
+        //         users.push({...{id: doc.id}, ...doc.data()});
+        //     });
+        //     this._ngRedux.dispatch({type: REPLACE_USERS, users: users});
+        //     this._ngRedux.dispatch({type: CHANGE_LOADING, loading: false});
+        // });
+
+        return this._db.collection('users').snapshotChanges().subscribe((data) => {
             const users = [];
-            snapshot.docs.forEach((doc) => {
-                users.push({...{id: doc.id}, ...doc.data()});
+            data.forEach((doc) => {
+                const user = doc.payload.doc;
+                users.push({...{id: user.id}, ...user.data()});
             });
             this._ngRedux.dispatch({type: REPLACE_USERS, users: users});
             this._ngRedux.dispatch({type: CHANGE_LOADING, loading: false});

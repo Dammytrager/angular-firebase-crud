@@ -15,6 +15,9 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="showImageLoader" class="image-loader d-flex justify-content-center align-items-center">
+                        <caf-loader [data]="{type: 2, color: 'white'}"></caf-loader>
+                    </div>
                 </div>
             </div>
             <div class="alter d-flex justify-content-center" *ngIf="route === '/user/create'">

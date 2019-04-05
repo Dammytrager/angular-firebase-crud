@@ -48,6 +48,19 @@
           color: $white;
         }
       }
+      .image-loader  {
+        transition: all 1s;
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        @media (max-width: 575px) {
+          width: 120px;
+          height: 120px;
+        }
+      }
     }
   }
   .alter {
