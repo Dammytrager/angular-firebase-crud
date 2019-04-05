@@ -1,5 +1,9 @@
 # Angular-Firebase CRUD
-An angular firebase/firestore app.
+An angular firebase/firestore app. Utilizes the real time database storage of firestore
+
+## Live Demo
+[Live Demonstration](https://dammytrager.github.io/angular-firebase-crud/)
+
 ## Development Information
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
