@@ -1,0 +1,139 @@
+.caf-loader {
+
+  .spinner  {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #eee;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  /*Spinner-1*/
+
+  .spinner-1{
+    width: 60px;
+    height: 20px;
+    background: none;
+  }
+
+  .spinner-1 span  {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .spinner-1.p-pink span {
+    background-color: $primary;
+  }
+  .spinner-1.s-pink  span {
+    background-color: $bg-primary;
+  }
+  .spinner-1.white  span {
+    background-color: $white;
+  }
+
+  .spinner-1 span:nth-child(1)  {
+    animation:bouncy  1.5s linear infinite;
+  }
+
+  .spinner-1 span:nth-child(2)  {
+    animation:bouncy  1.5s linear 0.495s infinite;
+  }
+
+  .spinner-1 span:nth-child(3)  {
+    animation:bouncy  1.5s linear 0.99s infinite;
+  }
+
+  @keyframes bouncy {
+    0%, 100%{ opacity: 0;}
+    50%  { opacity: 1;}
+  }
+  /*End of Spinner-1*/
+
+  /*Spinner-2*/
+  .spinner-2  {
+    background: transparent !important;
+    width: 16px;
+    height: 16px;
+    padding-top: 2px;
+  }
+
+  .spinner-2:after  {
+    content:'';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: block;
+    border: solid 1.5px transparent;
+    animation: 1s linear infinite spinny2;
+  }
+
+  .spinner-2.p-pink:after {
+    border-top-color: $primary;
+    border-bottom-color: $primary;
+    border-left-color: $primary;
+  }
+  .spinner-2.s-pink:after {
+    border-top-color: $bg-primary;
+    border-bottom-color: $bg-primary;
+    border-left-color: $bg-primary;
+  }
+  .spinner-2.white:after {
+    border-top-color: $white;
+    border-bottom-color: $white;
+    border-left-color: $white;
+  }
+
+  @keyframes spinny2 {
+    0%  { transform: rotate(0deg) scale(1);}
+
+    100%  { transform:rotate(360deg) scale(1);}
+  }
+  /*End of Spinner-2*/
+
+  /*Spinner-3*/
+  .spinner-3  {
+    background: transparent !important;
+    width: 16px;
+    height: 16px;
+    padding-top: 2px;
+  }
+
+  .spinner-3:after  {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display:block;
+    border:solid 1.5px transparent;
+    animation: 1s linear infinite spinny;
+  }
+
+  .spinner-3.p-pink:after {
+    border-top-color: $primary;
+    border-bottom-color: $primary;
+  }
+  .spinner-3.s-pink:after {
+    border-top-color: $bg-primary;
+    border-bottom-color: $bg-primary;
+  }
+  .spinner-3.white:after {
+    border-top-color: $white;
+    border-bottom-color: $white;
+  }
+
+  @keyframes spinny {
+    0%  { transform: rotate(0deg) scale(1);}
+
+    50% {transform:rotate(45deg) scale(1.2);}
+
+    100%  { transform:rotate(360deg) scale(1);}
+  }
+  /*End of Spinner-3*/
+
+
+}

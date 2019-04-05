@@ -1,0 +1,57 @@
+{
+  "settings": {
+    "site_details": {
+      "d_comm": "2019-01-22",
+      "addr": "43 adeola odeku, vi lagos",
+      "plc_d_comm": "2019-01-22",
+      "site_code": "5mdIPkKykleBASdR",
+      "space_code": "fbn-0001",
+      "desc": "43 adeola odeku, vi lagos",
+      "name": "first bank plc"
+    },
+    "site_loc": {
+      "lat": "6.4531",
+      "city": "Lagos",
+      "state": "Lagos",
+      "long": "3.3958",
+      "country": "Nigeria"
+    },
+    "utils": {
+      "pub_ipv4": "41.75.92.106",
+      "priv_ipv4": "192.168.4.104 "
+    },
+    "devices": {
+      "all": [
+        {
+          "type": "conext xw",
+          "addr": 10
+        }
+      ],
+      "num": 1
+    },
+    "etrack_hw": {
+      "is_enabled": true,
+      "has_camera": false,
+      "name": "etrack v1.0.0",
+      "plc_interface": "modbus_tcp",
+      "plc_ipv4": "192.168.4.105",
+      "plc_brand": "schneider",
+      "plc_port": "502"
+    },
+    "data_opt": {
+      "load": true,
+      "pv": false,
+      "batt": true,
+      "grid": true,
+      "gen": false
+    },
+    "manu_details": {
+      "name": "inventech llc, nigeria",
+      "email": "info@inventech.ng"
+    },
+    "installer_details": {
+      "phone": "08134256313",
+      "name": "inlaks"
+    }
+  }
+}
